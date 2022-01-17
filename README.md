@@ -38,6 +38,14 @@ Please see the header of each file for more a mode detailed description of each 
 
 ## Requirements
 
-* `R`: https://cran.r-project.org/index.html. Version 4.0 or later.
-* `R` package `compcodeR`: https://doi.org/10.18129/B9.bioc.compcodeR.
-* `R` package `countsimQC`: www.doi.org/10.18129/B9.bioc.countsimQC
+* [`R`](https://cran.r-project.org/index.html). Version 4.0 or later.
+
+* `R` package [`compcodeR`](https://doi.org/10.18129/B9.bioc.compcodeR).
+To get the exact same version as the one used to run the scripts for the manuscript, 
+the package can be installed from the `phylocomp` branch of the `GitHub` repository,
+using the following command (see e.g. l.22 of script `01_data_format_Stern2018.R`):
+```R
+devtools::install_github("csoneson/compcodeR", ref = "phylocomp")
+```
+
+* `R` package [`countsimQC`](www.doi.org/10.18129/B9.bioc.countsimQC). Version 1.12.0.
