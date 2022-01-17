@@ -416,11 +416,11 @@ data_set_bloc <- readRDS(file.path(simus_directory, paste0(dataset, "_", i, ".rd
 # Cond
 conds_bloc <- data.frame(label = rownames(data_set_bloc@sample.annotations),
                          condition = as.factor(data_set_bloc@sample.annotations$id.condition))
-conds_bloc$Design <- cond_type
+conds_bloc$Design <- "block"
 # DE
 data_set_bloc <- data_set_bloc@variable.annotations
 data_set_bloc$differential.expression <- as.factor(data_set_bloc$differential.expression)
-data_set_bloc$Design <- cond_type
+data_set_bloc$Design <- "block"
 
 ## alt
 cond_type <- "alt"
@@ -438,7 +438,7 @@ data_set_alt$Design <- cond_type
 data_set <- rbind(#data_set_sights, 
   data_set_alt,
   data_set_bloc)
-data_set$Design <- factor(data_set$Design, c("bloc", "sight", "alt"))
+data_set$Design <- factor(data_set$Design, c("block", "sight", "alt"))
 
 conds <- rbind(conds_bloc, conds_sights, conds_alt)
 
@@ -510,7 +510,7 @@ aa <- subset(conds_plot, Design == "alt")
 aa$ystart <- aa$y - 0.5
 aa$yend <- aa$y + 0.5
 
-conds_plot$Design <- factor(conds_plot$Design, c("bloc", "alt", "sight"))
+conds_plot$Design <- factor(conds_plot$Design, c("block", "alt", "sight"))
 conds_plot$real <- conds_plot$Design == "sight"
 p1 <- ggplot(subset(conds_plot, real), aes(x = Design, y = y, col = condition)) +
   geom_point(size = 1.6, shape = 15) + 
