@@ -1,0 +1,27 @@
+XYLA_ARATH	Xylose isomerase
+RS30_ORYLA	40S ribosomal protein S30
+RTBS_DROME	Probable RNA-directed DNA polymerase from transposon BS
+ARRH_LOCMI	Arrestin homolog
+JERKY_HUMAN	Jerky protein homolog
+RL10_BOMMA	60S ribosomal protein L10
+NDKA_PONAB	Nucleoside diphosphate kinase A
+OPSD_PROCL	Rhodopsin
+RTJK_DROME	RNA-directed DNA polymerase from mobile element jockey
+RL19_DROME	60S ribosomal protein L19
+LIN1_NYCCO	LINE-1 reverse transcriptase homolog
+ARRH_HELVI	Arrestin homolog
+RTN4_MOUSE	Reticulon-4
+TCPA_DROME	T-complex protein 1 subunit alpha
+RL18_TIMBA	60S ribosomal protein L18
+RL6_CHILA	60S ribosomal protein L6
+NACA_DROME	Nascent polypeptide-associated complex subunit alpha
+GNAQ_HOMAM	Guanine nucleotide-binding protein G(q) subunit alpha
+RS11_RAT	40S ribosomal protein S11
+H5_CHICK	General transcription factor IIH subunit 5
+DPOL_HHBV	Protein P
+PIPA_DROME	1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase
+ELOA1_DROME	Transcription elongation factor B polypeptide 3
+GTD2A_HUMAN	General transcription factor II-I repeat domain-containing protein 2A
+7B2_HUMAN	Cytochrome c oxidase subunit 7B2, mitochondrial
+AT1B1_ARTSF	Sodium/potassium-transporting ATPase subunit beta
+PFD1_DANRE	Prefoldin subunit 1

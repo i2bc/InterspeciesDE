@@ -1,0 +1,22 @@
+RL22_CAEEL	60S ribosomal protein L22
+XYLA_ARATH	Xylose isomerase
+RS14_PROCL	40S ribosomal protein S14
+AN32A_DROME	Acidic leucine-rich nuclear phosphoprotein 32 family member A
+MDC1_MACMU	Mediator of DNA damage checkpoint protein 1
+PIPA_DROME	1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase
+K0100_HUMAN	Protein KIAA0100
+ALF_DROME	Fructose-bisphosphate aldolase
+PGK_DROME	Phosphoglycerate kinase
+LIAT1_HUMAN	Protein LIAT1
+E2AK4_RAT	eIF-2-alpha kinase GCN2
+RS3A_BIPLU	40S ribosomal protein S3a
+DNJC5_DROME	DnaJ homolog subfamily C member 5 homolog
+EAA3_RABIT	Excitatory amino acid transporter 3
+TPRGL_MOUSE	Tumor protein p63-regulated gene 1-like protein
+EIF3B_HUMAN	Eukaryotic translation initiation factor 3 subunit B
+NFKB2_XENLA	Nuclear factor NF-kappa-B p100 subunit
+WDR48_CHICK	WD repeat-containing protein 48
+CDN1B_HUMAN	Cyclin-dependent kinase inhibitor 1B
+OPSD_PROCL	Rhodopsin
+ZBT49_HUMAN	Zinc finger and BTB domain-containing protein 49
+RTJK_DROME	RNA-directed DNA polymerase from mobile element jockey

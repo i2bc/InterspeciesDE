@@ -1,0 +1,14 @@
+XYLA_ARATH	Xylose isomerase
+POL3_DROME	Retrovirus-related Pol polyprotein from transposon 17.6
+EF1A_BOMMO	Elongation factor 1-alpha
+YI31B_YEAST	Transposon Ty3-I Gag-Pol polyprotein
+TMED7_RAT	Transmembrane emp24 domain-containing protein 7
+U389_DROPS	UPF0389 protein GA21628
+RTBS_DROME	Probable RNA-directed DNA polymerase from transposon BS
+POL3_DROME	Retrovirus-related Pol polyprotein from transposon 17.6
+GP107_MOUSE	Protein GPR107
+TF29_SCHPO	Transposon Tf2-9 polyprotein
+RL28_SPOFR	60S ribosomal protein L28
+RL44_OCHTR	60S ribosomal protein L44
+LIN1_NYCCO	LINE-1 reverse transcriptase homolog
+RTJK_DROFU	RNA-directed DNA polymerase from mobile element jockey

@@ -1,0 +1,94 @@
+Orthogroup 	FDR-adjusted Pvalue 	Uniprot top hit 	Protein name
+OG0002505	2.65E-12 	XYLA_ARATH 	Xylose isomerase
+OG0000312 	5.59E-08 	BGBP_PENMO 	Beta-1,3-glucan-binding protein
+OG0004964	0.000000291 	YD541_YEAST 	Putative uncharacterized oxidoreductase YDR541C
+OG0002370	0.000000344 	ARRH_LOCMI 	Arrestin homolog
+OG0003440	0.00000221 	AQP_AEDAE 	Aquaporin AQPAe.a
+OG0007502	0.001105075 	EXC4_CAEEL 	Chloride intracellular channel exc-4
+OG0000255	0.002328104 	N/A 	N/A
+OG0000626	0.002328104 	SRPK1_HUMAN 	SRSF protein kinase 1
+OG0001281	0.002328104 	OPSD_PROCL 	Rhodopsin
+OG0003009	0.002328104 	ATX2_MOUSE 	Ataxin-2
+OG0005416	0.002328104 	SMRCD_RAT 	SWI/SNF-related matrix-associated actin-dependent regulator of chromatin subfamily A containing DEAD/H box 1
+OG0006298	0.002328104 	N/A 	N/A
+OG0001279	0.002512685 	ARRH_HELVI 	Arrestin homolog
+OG0000532	0.002883016 	N/A 	N/A
+OG0009626	0.002883016 	RL18_TIMBA 	60S ribosomal protein L18
+OG0000138	0.003133426 	MBL_DROME 	Protein muscleblind
+OG0002688	0.003227551 	N/A 	N/A
+OG0002416	0.003871429 	IVD_CAEEL 	Probable acyl-CoA dehydrogenase 6
+OG0003310	0.004026796 	SC6A3_BOVIN 	Sodium-dependent dopamine transporter
+OG0001828	0.004459277 	STK26_HUMAN 	Serine/threonine-protein kinase 26
+OG0000520	0.004960046 	KAZRA_DANRE 	Kazrin-A
+OG0001451	0.005567461 	PTPRR_HUMAN 	Receptor-type tyrosine-protein phosphatase R
+OG0001637	0.005567461 	SH2D5_HUMAN 	SH2 domain-containing protein 5
+OG0002735	0.005567461 	N/A 	N/A
+OG0003307	0.005567461 	EPG5_HUMAN 	Ectopic P granules protein 5 homolog
+OG0003176	0.006421801 	N/A 	N/A
+OG0004549	0.0066915 	XYLA_ARATH 	Xylose isomerase
+OG0001678	0.007144625 	GNAQ_HOMAM 	Guanine nucleotide-binding protein G(q) subunit alpha
+OG0005198	0.00814134 	N/A 	N/A
+OG0001358	0.010226004 	SYNE2_MOUSE 	Nesprin-2
+OG0009109	0.011709068 	VSX1_BOVIN 	Visual system homeobox 1
+OG0005790	0.011922228 	TM55A_BOVIN 	Type 2 phosphatidylinositol 4,5-bisphosphate 4-phosphatase
+OG0000233	0.013788087 	RTBS_DROME 	Probable RNA-directed DNA polymerase from transposon BS
+OG0001320	0.013788087 	RBP2_MOUSE 	E3 SUMO-protein ligase RanBP2
+OG0005909	0.013788087 	NCOA5_HUMAN 	Nuclear receptor coactivator 5
+OG0001750	0.015834672 	RTN4_MOUSE 	Reticulon-4
+OG0001666	0.017804195 	LORF2_HUMAN 	LINE-1 retrotransposable element ORF2 protein
+OG0003669	0.017804195 	GP107_MOUSE 	Protein GPR107
+OG0005540	0.018510657 	LACH_SCHAM 	Lachesin
+OG0000720	0.018862884	 N/A 	N/A
+OG0005238	0.02013529 	CDSA_DROME 	Phosphatidate cytidylyltransferase, photoreceptor-specific
+OG0005871	0.02013529 	ACDSB_PONAB 	Short/branched chain specific acyl-CoA dehydrogenase, mitochondrial
+OG0006973	0.02013529 	TNNC1_HOMAM 	Troponin C
+OG0000901	0.020296779 	SHEP_DROWI 	Protein alan shepard
+OG0001707	0.020296779 	Y0915_DROME 	Uncharacterized protein CG10915
+OG0002815	0.020296779 	RFIP1_HUMAN 	Rab11 family-interacting protein 1
+OG0001436	0.020324241 	KDM4B_DROME 	Probable lysine-specific demethylase 4B
+OG0001149	0.020865431 	RUSD2_HUMAN 	RNA pseudouridylate synthase domain-containing protein 2
+OG0003548	0.022129606 	CC50A_CHICK 	Cell cycle control protein 50A
+OG0008991	0.023215773 	RL24_DROME 	60S ribosomal protein L24
+OG0001627	0.024400363 	DYRK2_DROME	 Dual specificity tyrosine-phosphorylation-regulated kinase 2
+OG0008424	0.026142672 	RL28_SPOFR 	60S ribosomal protein L28
+OG0009597	0.027049436 	PSA6_RAT 	Proteasome subunit alpha type-6
+OG0000089	0.02733193 	CEL3A_XENLA 	CUGBP Elav-like family member 3-A
+OG0000208	0.02733193 	N/A 	N/A
+OG0000549	0.02733193 	DOCK3_HUMAN 	Dedicator of cytokinesis protein 3
+OG0004085	0.02733193 	RS11_RAT 	40S ribosomal protein S11
+OG0001321	0.028216946 	KDM6A_MOUSE 	Lysine-specific demethylase 6A
+OG0000144	0.030568008 	FBP1L_XENLA 	Formin-binding protein 1-like
+OG0000271	0.030568008 	DGK2_DROME 	Eye-specific diacylglycerol kinase
+OG0001831	0.030568008 	APC_RAT 	Adenomatous polyposis coli protein
+OG0002936	0.030568008 	P3H1_CHICK 	Prolyl 3-hydroxylase 1
+OG0004666	0.030568008 	GSTT1_DROER 	Glutathione S-transferase 1-1
+OG0002268	0.031528258 	SUOX_DROME 	Probable sulfite oxidase, mitochondrial
+OG0003351	0.031528258 	BOULE_DROME 	Protein boule
+OG0001105	0.032931074 	PIPA_DROME 	1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase
+OG0002566	0.032931074 	N/A 	N/A
+OG0004693	0.032931074 	RS26_RAT 	40S ribosomal protein S26
+OG0001066	0.04103759 	KCC2A_DROME 	Calcium/calmodulin-dependent protein kinase type II alpha chain
+OG0000324	0.041904418 	NEB1_HUMAN 	Neurabin-1
+OG0001426	0.041904418 	UBP5_MOUSE 	Ubiquitin carboxyl-terminal hydrolase 5
+OG0000938	0.042405039 	GAP2_DROME 	Probable Ras GTPase-activating protein
+OG0000370	0.042784878 	GPSM2_HUMAN 	G-protein-signaling modulator 2
+OG0008912	0.042784878 	RLA1_DROME 	60S acidic ribosomal protein P1
+OG0000069	0.043283419 	DNJC5_DROME 	DnaJ homolog subfamily C member 5 homolog
+OG0004138	0.043338196 	RER1_BOVIN 	Protein RER1
+OG0000063	0.044308614 	SH3G3_DROPS 	Endophilin-A
+OG0001335	0.044308614 	HIF1A_CHICK 	Hypoxia-inducible factor 1-alpha
+OG0004649	0.044308614 	CSP_PLAKU 	Circumsporozoite protein
+OG0000343	0.044350032 	MABP1_XENLA 	Mitogen-activated protein kinase-binding protein 1
+OG0009035	0.044350032 	ATP5H_DROME 	ATP synthase subunit d, mitochondrial
+OG0008422	0.046878673 	N/A 	N/A
+OG0001097	0.04738619 	CNOT3_MOUSE 	CCR4-NOT transcription complex subunit 3
+OG0001576	0.04738619 	CAD23_HUMAN 	Cadherin-23
+OG0001796	0.04738619 	POGZ_HUMAN 	Pogo transposable element with ZNF domain
+OG0000371	0.048645516 	FA65B_CHICK 	Rho family-interacting cell polarization regulator 2
+OG0001911	0.048645516 	JUPIT_DROMO 	Microtubule-associated protein Jupiter
+OG0002428	0.048645516 	POLR_DROME 	Retrovirus-related Pol polyprotein from type-2 retrotransposable element R2DM
+OG0003727	0.048645516 	N/A 	N/A
+OG0007916	0.048645516 	RL13_DANRE 	60S ribosomal protein L13
+OG0000421	0.049904203 	MSIR6_DROME 	RNA-binding protein Musashi homolog Rbp6
+OG0000804	0.049904203 	N/A 	N/A
+OG0005226	0.049904203 	Z385D_RAT 	Zinc finger protein 385D

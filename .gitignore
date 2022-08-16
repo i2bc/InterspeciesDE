@@ -18,6 +18,7 @@
 *.dvi
 *.jpg
 *.jpeg
+*.png
 # *.png
 *.svg
 *.eps
@@ -60,3 +61,6 @@
 # Specific Files
 .Rproj.user
 .local.vimrc
+# results
+*.rds
+*.html

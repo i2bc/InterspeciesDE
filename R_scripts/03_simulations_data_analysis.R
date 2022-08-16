@@ -17,9 +17,9 @@
 # Program to run differential expression analysis on simulated data.
 # Use input from script 02_simulations_Stern2018.R
 
-# NOTE : This is a computation intensive script
-# NOTE : The full result table from our own run (result of 04_simulations_data_analysis.R)
-#        is provided in the repository for convenience
+# NOTE: This is a computation intensive script
+# NOTE: The full result table from our own run (result of 04_simulations_data_analysis_results.R)
+#       is provided in the repository for convenience
 
 ## Install correct version of compcodeR
 # devtools::install_github("csoneson/compcodeR", ref = "phylocomp")

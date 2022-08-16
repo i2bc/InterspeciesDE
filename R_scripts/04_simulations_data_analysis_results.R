@@ -17,8 +17,8 @@
 # Program to compute scores of the differential expression analysis methods.
 # Use input from script 03_simulations_data_analysis.R
 
-# NOTE : The full result table from our own run (result of 04_simulations_data_analysis.R)
-#        is provided in the repository for convenience
+# NOTE: The full result table from our own run (result of 04_simulations_data_analysis_results.R)
+#       is provided in the repository for convenience
 
 ## Install correct version of compcodeR
 # devtools::install_github("csoneson/compcodeR", ref = "phylocomp")
