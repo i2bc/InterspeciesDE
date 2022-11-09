@@ -35,7 +35,7 @@ library(doParallel)
 here_dir <- here()
 
 name_data <- "stern2018"
-datestamp_day_simus <- "2021-11-24" ## Change here to match simulation date
+datestamp_day_simus <- "2021-12-01" ## Change here to match simulation date
 simus_directory <- paste0(datestamp_day_simus, "_simulations_", name_data)
 simus_directory <- file.path(here_dir, simus_directory)
 load(file.path(simus_directory, "simulation_parameters.RData"))
@@ -54,10 +54,13 @@ dir.create(results_directory)
 ################################################################################
 ## Iterations to analyze
 Nmin <- 1
-Nmax <- 20
+Nmax <- 50
 
 ## Required packages to pass to all nodes
 reqpckg <- c("compcodeR", "here", "foreach")
+
+## Keep only some prop var tree
+all_prop_var_tree <- list(0.6, 0.8, 1.0)
 
 ## Number of cores
 Ncores <- 3
@@ -157,7 +160,7 @@ foreach (tree_type = all_tree_types) %:%
         ## Remove some combinations of parameters
         if(cond_type != "sights" && (lnorm != "TPM" || ltrans != "log2")) return(NULL)
         if(block != "with_blocks" && (lnorm != "TPM" || ltrans != "log2")) return(NULL)
-        if(model_process == "OU" && (lnorm != "TPM" || ltrans != "log2" || cond_type != "sights" || block != "with_blocks")) return(NULL)
+        if(model_process == "OU" && (lnorm != "TPM" || ltrans != "log2" || block != "with_blocks")) return(NULL)
         if(trend != "no_trend" && (lnorm != "TPM" || ltrans != "log2" || cond_type != "sights")) return(NULL)
         
         ## Run analysis
@@ -199,8 +202,8 @@ foreach (tree_type = all_tree_types) %:%
           
           ## Remove some combinations of parameters
           if(cond_type != "sights" && (lnorm != "TPM" || ltrans != "log2")) return(NULL)
-          if(model_process == "OU" && (lnorm != "TPM" || ltrans != "log2" || cond_type != "sights")) return(NULL)
-          
+          if(model_process == "OU" && (lnorm != "TPM" || ltrans != "log2")) return(NULL)
+
           ## Run analysis
           runDiffExp(data.file = paste0(data_file, "_", i, ".rds"),
                      result.extent = method_name,
@@ -212,6 +215,54 @@ foreach (tree_type = all_tree_types) %:%
                      extra.design.covariates = NULL,
                      length.normalization = lnorm,
                      data.transformation = ltrans)
+
+          ## For the first iteration only, generate the analysis code
+          if (i == 1) generateCodeHTMLs(file.path(results_directory, paste0(dataset, "_", i, "_", method_name, ".rds")), results_directory)
+        }
+      
+      ####################################################################
+      ## SVA + limma
+      ####################################################################
+      method <- "lengthNorm.sva.limma"
+      
+      ## Length normalization when there are lengths only
+      all_length_norm <- c("none")
+      if (use_lengths == "with_lengths") all_length_norm <- c("none", "RPKM", "TPM")
+      ## Replicates correlation when there are replicates only
+      all_n.sv <- c("auto", "one")
+      if (!tree_type %in% c("no_tree", "us_star_tree")) all_blocks <- c("no_blocks", "with_blocks")
+      
+      foreach (lnorm =  all_length_norm) %:%
+        foreach (ltrans = c("log2", "sqrt")) %:%
+        foreach (trend = c("no_trend", "with_trend")) %:%
+        foreach (n.sv = all_n.sv) %:%
+        foreach(i = Nmin:Nmax, .packages = reqpckg, .verbose = TRUE) %do% {
+          
+          ## Method id
+          method_name <- paste(method, lnorm, ltrans, trend, n.sv, sep = ".")
+          
+          ## If replicate correlation, find the right blocks
+          # is_block <- NULL
+          # if (block == "with_blocks") is_block <- "id.species"
+          
+          ## Sanity check : if result file already exists, do not run the analysis
+          if (file.exists(file.path(results_directory, paste0(dataset, "_", i, "_", method_name, ".rds")))) return(NULL)
+          
+          ## Remove some combinations of parameters
+          if(cond_type != "sights" && (lnorm != "TPM" || ltrans != "log2")) return(NULL)
+          if(model_process == "OU" && (lnorm != "TPM" || ltrans != "log2")) return(NULL)
+          if(trend != "no_trend") return(NULL)
+          
+          ## Run analysis
+          runDiffExp(data.file = paste0(data_file, "_", i, ".rds"),
+                     result.extent = method_name,
+                     Rmdfunction = paste0(method, ".createRmd"),
+                     output.directory = results_directory,
+                     norm.method = "TMM",
+                     length.normalization = lnorm,
+                     data.transformation = ltrans,
+                     trend = (trend == "with_trend"),
+                     n.sv = ifelse(n.sv == "auto", "auto", 1))
           
           ## For the first iteration only, generate the analysis code
           if (i == 1) generateCodeHTMLs(file.path(results_directory, paste0(dataset, "_", i, "_", method_name, ".rds")), results_directory)

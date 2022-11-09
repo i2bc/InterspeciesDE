@@ -287,6 +287,22 @@ diff_002
 match_002 <- nrow(na.omit(limma_stern_002)) - nrow(na.omit(limma_stern))
 match_002
 
+##################################################################
+## RPKM
+##################################################################
+## Limma Cor RPKM
+th <- 0.05
+results_rpkm_cor <- readRDS(here(results_directory, "stern2018_cpd_lengthNorm.limma.RPKM.log2.with_trend.with_blocks.rds"))
+results_rpkm_cor <- subset(results_rpkm_cor@result.table, adjpvalue <= th)
+results_rpkm_cor$Orthogroup <- rownames(results_rpkm_cor)
+results_rpkm_cor$Uniprot.top.hit <- all_ogs[match(results_rpkm_cor$Orthogroup, all_ogs$Orthogroup), "Uniprot.top.hit"]
+results_rpkm_cor
+# Match Stern - Limma Cor
+rpkm_stern <- results_stern[match(results_rpkm_cor$Orthogroup, results_stern$Orthogroup), -2]
+rpkm_stern
+limma_rpkm <- results_limma_cor[match(results_rpkm_cor$Orthogroup, results_limma_cor$Orthogroup), -2]
+limma_rpkm
+
 # BEGIN DO NOT RUN 
 ####################################################################
 ## Limma by clades - Analysis

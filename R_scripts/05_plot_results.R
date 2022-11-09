@@ -30,7 +30,7 @@ library(here)
 ## File management
 ################################################################################
 datestamp_day_simus <- "2021-12-01" ## Change here for the simulation date
-datestamp_day_anaysis <- "2021-12-01" ## Change here for the analysis date
+datestamp_day_anaysis <- "2022-11-02" ## Change here for the analysis date
 name_data <- "stern2018"
 simus_directory <- paste0(datestamp_day_simus, "_simulations_", name_data)
 simus_directory <- here(simus_directory)
@@ -78,6 +78,9 @@ result.table$Design <- factor(result.table$Design, levels = c("block", "sight", 
 result.table$prop_var_tree <- as.factor(result.table$prop_var_tree)
 result.table$effect_size <- as.factor(result.table$effect_size)
 
+result.table$methodMod[grepl("n.sv.auto", result.table$de.methods)] <- "limma_sva_auto"
+result.table$nsvmethod[grepl("n.sv.auto", result.table$de.methods)] <- "auto"
+
 ## Format for plot
 result.table_plot <- reshape2::melt(result.table,
                                     measure.vars = c("AUC", "MCC", "FDR", "TPR"),
@@ -95,7 +98,9 @@ pretty_names <- c("DESeq2" = "DESeq2",
                   "limma_trend_cor" = "limma trend (cor)",
                   "limma_trend" = "limma trend",
                   "phylolm_BM" = "phylolm (BM)",
-                  "phylolm_OU" = "phylolm (OU)")
+                  "phylolm_OU" = "phylolm (OU)",
+                  "limma_sva_one" = "limma sva (one)",
+                  "limma_sva_auto" = "limma sva (auto)")
 
 pretty_names_tree <- c("no_tree" = "NB",
                        "us_star_tree" = "pPLN (star tree)",
@@ -120,13 +125,7 @@ df <- subset(result.table_plot,
              & fact_disp == base_fact_disp
              & score %in% c("FDR")
              & model_process %in% c("NB", "BM")
-             & !(methodMod %in% c(
-               "limma_cor",
-               "phylolm_BM",
-               "phylolm_OU",
-               "limma_trend",
-               "limma_trend_cor"
-             ))
+             & methodMod %in% c("DESeq2", "limma")
 )
 df$methodMod <- factor(df$methodMod, levels = c("DESeq2", "limma"))
 df$tree_type <- factor(df$tree_type, levels = c("no_tree",
@@ -182,12 +181,12 @@ df <- subset(result.table_plot,
                "limma_trend_cor"))
 )
 df <- subset(df, use_lengths ==  "with_lengths" & tree_type == "real_tree")
-df$methodMod <- factor(df$methodMod, levels = c("DESeq2", "limma", "limma_cor", "phylolm_BM",
+df$methodMod <- factor(df$methodMod, levels = c("DESeq2", "limma", "limma_sva_one", "limma_sva_auto", "limma_cor", "phylolm_BM",
                                                 "phylolm_OU"
 ))
 levels(df$methodMod) <- pretty_names[levels(df$methodMod)]
 
-if (nrow(df) / 3 / 3 / 5 != Nrep) message("wrong dimension")
+if (nrow(df) / 3 / 3 / 7 != Nrep) message("wrong dimension")
 if (anyNA(df$score_value)) message("Some NAs in the data")
 
 dodge <- position_dodge(width = 0)
@@ -227,11 +226,10 @@ df <- subset(result.table_plot,
              & effect_size == base_effect_size
              & prop_var_tree == base_prop_var_tree
              & fact_disp == base_fact_disp
-             & cond_type == base_cond_type
-             & score %in% c("MCC")
-             & !(methodMod %in% c(
-               "limma", "DESeq2",
-               "limma_trend", "limma_trend_cor"))
+             # & cond_type == base_cond_type
+             & score %in% plot_scores
+             & methodMod %in% c(
+               "phylolm_BM", "phylolm_OU", "limma_cor")
 )
 df <- subset(df, use_lengths ==  "with_lengths" & tree_type == "real_tree")
 df$methodMod <- factor(df$methodMod,
@@ -243,11 +241,11 @@ df$methodMod <- factor(df$methodMod,
 
 levels(df$methodMod) <- pretty_names[levels(df$methodMod)]
 
-if (nrow(df) / 1 / 3 / 2 != Nrep) message("wrong dimension")
+if (nrow(df) / 3 / 3 / 3 / 2 != Nrep) message("wrong dimension")
 if (anyNA(df$score_value)) message("Some NAs in the data")
 
 ggplot(df, aes(x = methodMod, y = score_value, fill = model_process, color = model_process)) +
-  facet_grid(score ~ ., scales = "free_y", switch = "y", labeller = labeller(Design = label_both)) +
+  facet_grid(score ~ cond_type, scales = "free_y", switch = "y", labeller = labeller(Design = label_both)) +
   geom_boxplot(alpha = 0.3, outlier.size = 0.5, show.legend = FALSE,
                position = "identity", width = 0.2*3/5,
                aes(group = interaction(effect_size, methodMod, Design, model_process, factor(fact_disp), prop_var_tree))) +
@@ -285,9 +283,8 @@ df <- subset(result.table_plot,
              & cond_type == base_cond_type
              & score %in% c("MCC")
              & model_process == "BM"
-             & !(methodMod %in% c(
-               "limma", "DESeq2",
-               "limma_trend", "limma_trend_cor"))
+             & methodMod %in% c("limma_cor",
+                                "phylolm_BM", "phylolm_OU")
 )
 df <- subset(df, use_lengths ==  "with_lengths" & tree_type == "real_tree")
 df$methodMod <- factor(df$methodMod,
@@ -597,3 +594,53 @@ pb <- ggplot(aa) +
 aligned_plots <- align_plots(pp, pb, align="hv", axis="tlr")
 ggdraw(aligned_plots[[1]]) + draw_plot(aligned_plots[[2]])
 # colorblindr::cvd_grid(ggdraw(aligned_plots[[1]]) + draw_plot(aligned_plots[[2]]))
+
+###############################################################################
+## Figure : SVA nsv
+################################################################################
+df <- subset(result.table,
+             lengthNormalization %in% c("TPM", "length")
+             & transformation %in% c("log2", "none")
+             & effect_size == base_effect_size
+             & fact_disp == base_fact_disp
+             & prop_var_tree == base_prop_var_tree
+             & model_process == "BM"
+             # & score %in% c(plot_scores, "nsv")
+             & methodMod %in% c(
+               "limma_sva_auto")
+)
+df <- subset(df, use_lengths ==  "with_lengths" & tree_type == "real_tree")
+df$methodMod <- factor(df$methodMod, levels = c("DESeq2", "limma", "limma_cor", "limma_sva_one", "limma_sva_auto", "phylolm_BM",
+                                                "phylolm_OU"
+))
+levels(df$methodMod) <- pretty_names[levels(df$methodMod)]
+
+if (nrow(df) / 3 / 1 / 1 != Nrep) message("wrong dimension")
+if (anyNA(df$score_value)) message("Some NAs in the data")
+
+dodge <- position_dodge(width = 0)
+
+ggplot(df, aes(x = Design, y = nsv, fill = Design, color = Design)) +
+  # geom_hline(aes(yintercept = threshold), linetype = 2) +
+  # facet_grid(nsv ~ ., scales = "free", switch = "y", labeller = labeller(Design = label_both)) +
+  geom_boxplot(alpha = 0.3, outlier.size = 0.5, show.legend = FALSE,
+               position = "identity", width = 0.2,
+               aes(group = interaction(effect_size, use_lengths, tree_type, methodMod, prop_var_tree, Design))) +
+  stat_summary(fun = median, geom = 'line', aes(group = interaction(effect_size, use_lengths, tree_type, prop_var_tree), colour = Design)) +
+  scale_fill_viridis_d(guide = "none", end = 0.8, option = "B") +
+  scale_colour_viridis_d(end = 0.8, option = "B", guide ="none") +
+  ylab("Number of Surogate Variables") +
+  # xlab("") +
+  theme_bw() +
+  theme(text = element_text(size = 9),
+        title = element_text(size = 7),
+        # strip.text.y = element_text(vjust = -3),
+        # strip.placement = "outside",
+        # strip.background = element_blank(),
+        # panel.grid.minor = element_blank(),
+        legend.position = c(0.01, 0.01),
+        legend.justification = c("left", "bottom"),
+        legend.key.size = unit(10, 'pt'),
+        # plot.margin = unit(c(0.1,0.1,-0.31,-0.5), "cm")
+  )
+# colorblindr::cvd_grid

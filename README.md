@@ -15,6 +15,7 @@ Please see the header of each file for more a mode detailed description of each 
   * `04_simulations_data_analysis_results.R`: comparisons of the results from various methods on the same simulated datasets.
   * `05_plot_results.R`: plot of the results as presented in the manuscript.
   * `06_simulations_data_check.R`: check of the data using `countsimQC`.
+  * `07_data_analysis.R`: re-analysis of the Crayfish dataset.
 
 * `data`: data issued from Stern et al. 2018.
   * `crayfish.nodelabels.tre`: crayfish tree from Stern et al 2018.
@@ -35,6 +36,8 @@ Please see the header of each file for more a mode detailed description of each 
 * `2021-12-01_2021-12-01_simulations_stern2018_results`: selected results from differential analysis on the simulated datasets.
   * `full_result_table_1_50.rds`: scores of the various differential expression analysis methods applied on the various simulated datasets.
     Produced by the `R` script `R_scripts/04_simulations_data_analysis_results.R`.
+
+* `2022-11-02_2021-12-01_simulations_stern2018_results`: results of a more recent run of the analyses, that includes SVA tests.
 
 ## Requirements
 

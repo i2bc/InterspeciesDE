@@ -32,8 +32,8 @@ library(compcodeR)
 # here_dir <- sub("save", "work", here())
 here_dir <- here()
 
-datestamp_day_simus <- "2021-11-25" ## Change here for the simulation date
-datestamp_day_anaysis <- "2021-11-25" ## Change here for the analysis date
+datestamp_day_simus <- "2021-12-01" ## Change here for the simulation date
+datestamp_day_anaysis <- "2022-11-02" ## Change here for the analysis date
 name_data <- "stern2018"
 simus_directory <- paste0(datestamp_day_simus, "_simulations_", name_data)
 simus_directory <- file.path(here_dir, simus_directory)
@@ -215,6 +215,40 @@ for (dataset in all_datasets) {
     res.table$methodMod[grepl(nn, res.table$de.methods)] <- paste0(res.table$methodMod[grepl(nn, res.table$de.methods)], "_cor")
   }
   res.table$blockCor[is.na(res.table$blockCor)] <- "none"
+  # sva
+  res.table$sva <- grepl("sva", res.table$de.methods)
+  # nsv
+  get_nsv <- function(res_sub) {
+    n_files <- nrow(res_sub)
+    all_nsv <- rep(NA, n_files)
+    for (i in seq_len(n_files)) {
+      bool <- grepl("sva", all_method_files) & 
+        grepl(res_sub[i, "transformation"], all_method_files) &
+        grepl(res_sub[i, "trendeBayes"], all_method_files) &
+        grepl(res_sub[i, "use_lengths"], all_method_files) &
+        grepl(res_sub[i, "lengthNormalization"], all_method_files) &
+        grepl(paste0("\\.", res_sub[i, "nsvmethod"], "\\."), all_method_files) &
+        grepl(paste0("_", res_sub[i, "repl"], "_lengthNorm"), all_method_files)
+      tmp <- readRDS(all_method_files[bool])
+      if (length(tmp@result.table$n.sv) == 0) {
+        print(res_sub[i, "de.methods"])
+        print(all_method_files[bool])
+        all_nsv[i] <- NA
+      } else {
+        all_nsv[i] <- tmp@result.table$n.sv[1]
+      }
+    }
+    return(all_nsv)
+  }
+  res.table$nsvmethod <- NA
+  for (nn in c("n\\.sv\\.auto", "n\\.sv\\.1")) {
+    res.table$nsvmethod[grepl(nn, res.table$de.methods)] <- ifelse(nn == "n\\.sv\\.auto", "auto", "one")
+    res.table$methodMod[grepl(nn, res.table$de.methods)] <- paste0(res.table$methodMod[grepl(nn, res.table$de.methods)], "_sva_", ifelse(nn == "n\\.sv\\.auto", "auto", "one"))
+  }
+  res.table$nsv <- 0
+  for (nn in c("n\\.sv\\.auto", "n\\.sv\\.1")) {
+    res.table$nsv[grepl(nn, res.table$de.methods)] <- get_nsv(res.table[grepl(nn, res.table$de.methods), ])
+  } 
   
   ## Effective Sample Size
   oneres <- readRDS(file.table$input.files[1])
